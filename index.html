@@ -29,21 +29,30 @@
       --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
     }
 
-    * {
+    *, *::before, *::after {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
     }
 
+    html, body {
+      width: 100%;
+      max-width: 100%;
+      overflow-x: hidden;
+      scroll-behavior: smooth;
+    }
+
     body {
-      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
       background: var(--bg-page);
       color: var(--text-main);
       line-height: 1.6;
       padding-bottom: 80px;
+      -webkit-font-smoothing: antialiased;
     }
 
     .container {
+      width: 100%;
       max-width: 1200px;
       margin: 0 auto;
       padding: 0 24px;
@@ -59,20 +68,22 @@
       top: 0;
       z-index: 1000;
       padding: 12px 0;
+      width: 100%;
     }
 
     .nav-container {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 20px;
+      gap: 16px;
     }
 
     .brand-brand {
       display: flex;
       align-items: center;
-      gap: 14px;
+      gap: 12px;
       text-decoration: none;
+      min-width: 0;
     }
 
     .logo-box {
@@ -83,10 +94,11 @@
       align-items: center;
       justify-content: center;
       box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+      flex-shrink: 0;
     }
 
     .brand-logo-img {
-      height: 38px;
+      height: 36px;
       width: auto;
       object-fit: contain;
       display: block;
@@ -95,6 +107,7 @@
     .brand-titles {
       display: flex;
       flex-direction: column;
+      min-width: 0;
     }
 
     .brand-title-main {
@@ -103,6 +116,7 @@
       color: #ffffff;
       letter-spacing: -0.01em;
       line-height: 1.2;
+      white-space: nowrap;
     }
 
     .brand-title-sub {
@@ -111,12 +125,16 @@
       text-transform: uppercase;
       letter-spacing: 0.08em;
       font-weight: 600;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 
     .brand-actions {
       display: flex;
       align-items: center;
-      gap: 14px;
+      gap: 12px;
+      flex-shrink: 0;
     }
 
     .pill-local-first {
@@ -128,6 +146,7 @@
       font-size: 0.78rem;
       font-weight: 700;
       letter-spacing: 0.04em;
+      white-space: nowrap;
     }
 
     .btn-demo-nav {
@@ -140,6 +159,10 @@
       text-decoration: none;
       transition: background 0.2s, transform 0.2s;
       box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+      white-space: nowrap;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
     }
 
     .btn-demo-nav:hover {
@@ -151,18 +174,20 @@
     .hero-brand-badge {
       display: inline-flex;
       align-items: center;
-      gap: 12px;
+      gap: 10px;
       background: #ffffff;
-      padding: 6px 16px 6px 8px;
+      padding: 5px 14px 5px 8px;
       border-radius: 12px;
       box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+      max-width: 100%;
     }
 
     .hero-logo-img {
-      height: 36px;
+      height: 32px;
       width: auto;
       object-fit: contain;
       display: block;
+      flex-shrink: 0;
     }
 
     .hero-brand-name {
@@ -170,6 +195,7 @@
       font-weight: 800;
       color: #0f172a;
       letter-spacing: -0.01em;
+      white-space: nowrap;
     }
 
     .hero-brand-pill {
@@ -181,6 +207,7 @@
       border-radius: 6px;
       text-transform: uppercase;
       letter-spacing: 0.05em;
+      white-space: nowrap;
     }
 
     /* CTA Logo */
@@ -196,7 +223,7 @@
     }
 
     .cta-logo {
-      height: 52px;
+      height: 48px;
       width: auto;
       object-fit: contain;
       display: block;
@@ -206,9 +233,10 @@
     header.hero {
       background: linear-gradient(135deg, #1e1b4b 0%, #312e81 50%, #4338ca 100%);
       color: #fff;
-      padding: 80px 0 60px;
+      padding: 70px 0 55px;
       position: relative;
       overflow: hidden;
+      width: 100%;
     }
 
     header.hero::after {
@@ -228,22 +256,24 @@
       gap: 8px;
       background: rgba(255, 255, 255, 0.12);
       border: 1px solid rgba(255, 255, 255, 0.2);
-      padding: 6px 16px;
+      padding: 6px 14px;
       border-radius: 9999px;
-      font-size: 0.85rem;
+      font-size: 0.8rem;
       font-weight: 600;
       letter-spacing: 0.5px;
       text-transform: uppercase;
       color: #e0e7ff;
-      margin-bottom: 20px;
+      max-width: 100%;
+      word-break: break-word;
     }
 
     .hero-title {
-      font-size: 3.2rem;
+      font-size: clamp(1.85rem, 5.5vw, 3.2rem);
       font-weight: 800;
       letter-spacing: -0.03em;
-      line-height: 1.15;
-      margin-bottom: 20px;
+      line-height: 1.18;
+      margin-bottom: 18px;
+      word-break: break-word;
     }
 
     .hero-title b {
@@ -253,41 +283,50 @@
     }
 
     .hero-subtitle {
-      font-size: 1.25rem;
+      font-size: clamp(0.95rem, 2.5vw, 1.2rem);
       color: #cbd5e1;
       max-width: 780px;
       line-height: 1.6;
-      margin-bottom: 36px;
+      margin-bottom: 32px;
     }
 
     .hero-stats {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 20px;
-      margin-top: 40px;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      margin-top: 36px;
       border-top: 1px solid rgba(255, 255, 255, 0.15);
-      padding-top: 30px;
+      padding-top: 26px;
+    }
+
+    .stat-item {
+      background: rgba(255, 255, 255, 0.05);
+      padding: 16px;
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
     }
 
     .stat-item h3 {
-      font-size: 2rem;
+      font-size: clamp(1.3rem, 3.5vw, 2rem);
       font-weight: 800;
       color: #fff;
+      line-height: 1.2;
     }
 
     .stat-item p {
-      font-size: 0.9rem;
-      color: #94a3b8;
+      font-size: clamp(0.75rem, 1.8vw, 0.88rem);
+      color: #cbd5e1;
+      margin-top: 4px;
     }
 
-    /* Value Pillars */
+    /* Section Headers */
     .section-title-wrap {
       text-align: center;
-      margin: 70px 0 40px;
+      margin: clamp(40px, 8vw, 70px) 0 clamp(24px, 5vw, 40px);
     }
 
     .section-tag {
-      font-size: 0.85rem;
+      font-size: 0.82rem;
       font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 1px;
@@ -297,29 +336,33 @@
     }
 
     .section-heading {
-      font-size: 2.25rem;
+      font-size: clamp(1.6rem, 4.5vw, 2.25rem);
       font-weight: 800;
       letter-spacing: -0.02em;
+      line-height: 1.25;
+      word-break: break-word;
     }
 
     .section-desc {
-      font-size: 1.1rem;
+      font-size: clamp(0.92rem, 2.2vw, 1.08rem);
       color: var(--text-muted);
       max-width: 650px;
-      margin: 12px auto 0;
+      margin: 10px auto 0;
+      line-height: 1.55;
     }
 
+    /* Pillars Grid */
     .pillars-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 24px;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
     }
 
     .pillar-card {
       background: var(--bg-card);
       border: 1px solid var(--border);
       border-radius: 16px;
-      padding: 32px;
+      padding: clamp(20px, 4vw, 32px);
       box-shadow: var(--shadow-sm);
       transition: transform 0.2s, box-shadow 0.2s;
     }
@@ -337,48 +380,69 @@
       align-items: center;
       justify-content: center;
       font-size: 1.5rem;
-      margin-bottom: 20px;
+      margin-bottom: 16px;
     }
 
     .pillar-card h3 {
-      font-size: 1.3rem;
+      font-size: clamp(1.1rem, 2.5vw, 1.3rem);
       font-weight: 700;
-      margin-bottom: 12px;
+      margin-bottom: 10px;
     }
 
     .pillar-card p {
       color: var(--text-muted);
-      font-size: 0.95rem;
+      font-size: clamp(0.85rem, 1.8vw, 0.95rem);
       line-height: 1.6;
     }
 
     /* Comparison Table */
     .comparison-section {
-      margin-top: 60px;
+      margin-top: 50px;
       background: var(--bg-card);
-      border-radius: 20px;
+      border-radius: 18px;
       border: 1px solid var(--border);
       overflow: hidden;
       box-shadow: var(--shadow-sm);
+      width: 100%;
+    }
+
+    .table-scroll-hint {
+      display: none;
+      padding: 8px 14px;
+      background: #f1f5f9;
+      border-bottom: 1px solid var(--border);
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      text-align: center;
+      font-weight: 600;
+    }
+
+    .table-responsive {
+      width: 100%;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
     }
 
     table.compare-table {
       width: 100%;
       border-collapse: collapse;
       text-align: left;
+      min-width: 640px;
     }
 
     table.compare-table th,
     table.compare-table td {
-      padding: 18px 24px;
+      padding: clamp(12px, 2.5vw, 18px) clamp(14px, 3vw, 24px);
       border-bottom: 1px solid var(--border);
-      font-size: 0.95rem;
+      font-size: clamp(0.82rem, 1.8vw, 0.95rem);
+      line-height: 1.45;
     }
 
     table.compare-table th {
       background: #f1f5f9;
       font-weight: 700;
       color: var(--text-main);
+      white-space: nowrap;
     }
 
     table.compare-table tr:last-child td {
@@ -400,47 +464,53 @@
     .module-item {
       background: var(--bg-card);
       border: 1px solid var(--border);
-      border-radius: 20px;
-      padding: 36px;
-      margin-bottom: 48px;
+      border-radius: clamp(14px, 3vw, 20px);
+      padding: clamp(18px, 4vw, 36px);
+      margin-bottom: clamp(28px, 5vw, 48px);
       box-shadow: var(--shadow-sm);
+      width: 100%;
     }
 
     .module-badge {
       display: inline-block;
-      padding: 4px 12px;
+      padding: 3px 10px;
       border-radius: 6px;
       background: var(--primary-light);
       color: var(--primary);
-      font-size: 0.8rem;
+      font-size: 0.75rem;
       font-weight: 700;
       font-family: 'JetBrains Mono', monospace;
-      margin-bottom: 12px;
-    }
-
-    .module-title {
-      font-size: 1.8rem;
-      font-weight: 800;
       margin-bottom: 10px;
     }
 
+    .module-title {
+      font-size: clamp(1.3rem, 3.5vw, 1.8rem);
+      font-weight: 800;
+      margin-bottom: 8px;
+      line-height: 1.25;
+      word-break: break-word;
+    }
+
     .module-desc {
-      font-size: 1.05rem;
+      font-size: clamp(0.88rem, 2vw, 1.05rem);
       color: var(--text-muted);
-      margin-bottom: 24px;
+      margin-bottom: 20px;
+      line-height: 1.5;
     }
 
     .features-list {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 16px;
-      margin-bottom: 28px;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 14px;
+      margin-bottom: 24px;
     }
 
     .feature-point {
       display: flex;
       gap: 10px;
-      font-size: 0.95rem;
+      font-size: clamp(0.84rem, 1.8vw, 0.95rem);
+      align-items: flex-start;
+      line-height: 1.45;
     }
 
     .feature-point strong {
@@ -450,6 +520,8 @@
     .feature-icon {
       color: var(--success);
       font-weight: bold;
+      flex-shrink: 0;
+      margin-top: 1px;
     }
 
     .screenshot-frame {
@@ -458,60 +530,71 @@
       border: 1px solid #cbd5e1;
       background: #1e293b;
       box-shadow: var(--shadow-xl);
-      margin-top: 20px;
+      margin-top: 18px;
+      width: 100%;
     }
 
     .screenshot-frame img {
       width: 100%;
       height: auto;
       display: block;
+      object-fit: cover;
     }
 
     .screenshot-caption {
       background: #0f172a;
       color: #94a3b8;
-      font-size: 0.8rem;
-      padding: 10px 16px;
+      font-size: clamp(0.72rem, 1.6vw, 0.8rem);
+      padding: 10px 14px;
       display: flex;
       justify-content: space-between;
       align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
     }
 
     /* CTA Section */
     .cta-banner {
       background: linear-gradient(135deg, #312e81 0%, #4f46e5 100%);
-      border-radius: 24px;
+      border-radius: clamp(16px, 3.5vw, 24px);
       color: #fff;
-      padding: 60px 40px;
+      padding: clamp(32px, 6vw, 60px) clamp(20px, 4vw, 40px);
       text-align: center;
-      margin-top: 80px;
+      margin-top: clamp(40px, 8vw, 80px);
       box-shadow: var(--shadow-xl);
+      width: 100%;
     }
 
     .cta-banner h2 {
-      font-size: 2.5rem;
+      font-size: clamp(1.6rem, 5vw, 2.5rem);
       font-weight: 800;
-      margin-bottom: 16px;
+      margin-bottom: 14px;
+      line-height: 1.25;
+      word-break: break-word;
     }
 
     .cta-banner p {
-      font-size: 1.15rem;
+      font-size: clamp(0.9rem, 2.4vw, 1.15rem);
       color: #e0e7ff;
       max-width: 680px;
-      margin: 0 auto 32px;
+      margin: 0 auto 28px;
+      line-height: 1.55;
     }
 
     .cta-button {
-      display: inline-block;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
       background: #ffffff;
       color: var(--primary-dark);
       font-weight: 800;
-      font-size: 1.1rem;
-      padding: 16px 36px;
+      font-size: clamp(0.9rem, 2.2vw, 1.1rem);
+      padding: 14px 32px;
       border-radius: 12px;
       text-decoration: none;
       box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.2);
       transition: transform 0.2s, background 0.2s;
+      max-width: 100%;
     }
 
     .cta-button:hover {
@@ -519,22 +602,302 @@
       transform: translateY(-2px);
     }
 
-    @media (max-width: 768px) {
+    /* ─── COMPREHENSIVE RESPONSIVE BREAKPOINTS ─── */
+
+    /* Laptop & Tablet Landscape (1024px and below) */
+    @media (max-width: 1024px) {
+      .container {
+        padding: 0 20px;
+      }
+      .pillars-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 16px;
+      }
+      .hero-stats {
+        gap: 12px;
+      }
+    }
+
+    /* Tablet Portrait (768px - 899px) */
+    @media (max-width: 899px) {
+      .container {
+        padding: 0 18px;
+      }
+      .brand-title-sub {
+        display: none;
+      }
+      .hero-stats {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+      }
+      .pillars-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+      }
+      .table-scroll-hint {
+        display: block;
+      }
+    }
+
+    /* Mobile Devices (640px and below) */
+    @media (max-width: 640px) {
+      .container {
+        padding: 0 14px;
+      }
+      .brand-navbar {
+        padding: 10px 0;
+      }
+      .brand-brand {
+        gap: 8px;
+      }
+      .brand-logo-img {
+        height: 28px;
+      }
+      .brand-title-main {
+        font-size: 1rem;
+      }
+      .pill-local-first {
+        display: none;
+      }
+      .btn-demo-nav {
+        padding: 6px 12px;
+        font-size: 0.78rem;
+      }
+      .hero-brand-badge {
+        padding: 4px 10px 4px 6px;
+        gap: 8px;
+      }
+      .hero-logo-img {
+        height: 26px;
+      }
+      .hero-brand-name {
+        font-size: 0.85rem;
+      }
+      .hero-brand-pill {
+        font-size: 0.62rem;
+        padding: 1px 6px;
+      }
+      .badge-pill {
+        font-size: 0.72rem;
+        padding: 5px 10px;
+      }
+      header.hero {
+        padding: 45px 0 35px;
+      }
+      .hero-stats {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+        margin-top: 24px;
+        padding-top: 18px;
+      }
+      .stat-item {
+        padding: 12px;
+      }
+      .features-list {
+        grid-template-columns: 1fr;
+        gap: 12px;
+      }
+      .screenshot-caption {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 4px;
+      }
+      .cta-button {
+        width: 100%;
+      }
+    }
+
+    /* Very Small Screens (400px and below) */
+    @media (max-width: 400px) {
+      .container {
+        padding: 0 10px;
+      }
+      .btn-demo-nav {
+        padding: 5px 10px;
+        font-size: 0.74rem;
+      }
+      .stat-item {
+        padding: 10px 8px;
+      }
+    }
+
+    /* ─── PRINT OPTIMIZATIONS FOR BEAUTIFUL SHARABLE PDF ─── */
+    @media print {
+      @page {
+        size: A4 portrait;
+        margin: 12mm 10mm;
+      }
+
+      *, *::before, *::after {
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+      }
+
+      body {
+        background: #ffffff !important;
+        color: #0f172a !important;
+        padding-bottom: 0 !important;
+        font-size: 10pt;
+      }
+
+      .container {
+        max-width: 100% !important;
+        padding: 0 !important;
+      }
+
+      .brand-navbar {
+        position: static !important;
+        box-shadow: none !important;
+        border-bottom: 2px solid #312e81 !important;
+        background: #1e1b4b !important;
+        padding: 10px 16px !important;
+        border-radius: 12px;
+        margin-bottom: 16px;
+      }
+
+      header.hero {
+        padding: 36px 24px 28px !important;
+        border-radius: 16px !important;
+        margin-bottom: 24px !important;
+        page-break-after: avoid !important;
+        break-after: avoid !important;
+      }
+
       .hero-title {
-        font-size: 2.3rem;
+        font-size: 2.2rem !important;
+        margin-bottom: 12px !important;
+      }
+
+      .hero-subtitle {
+        font-size: 1rem !important;
+        margin-bottom: 20px !important;
+      }
+
+      .hero-stats {
+        grid-template-columns: repeat(4, 1fr) !important;
+        gap: 12px !important;
+        margin-top: 20px !important;
+        padding-top: 16px !important;
+      }
+
+      .stat-item {
+        padding: 10px 12px !important;
+        background: rgba(255, 255, 255, 0.1) !important;
+      }
+
+      .stat-item h3 {
+        font-size: 1.4rem !important;
+      }
+
+      .section-title-wrap {
+        margin: 28px 0 16px !important;
+        page-break-after: avoid !important;
+        break-after: avoid !important;
       }
 
       .section-heading {
-        font-size: 1.8rem;
+        font-size: 1.6rem !important;
+      }
+
+      .pillars-grid {
+        grid-template-columns: repeat(3, 1fr) !important;
+        gap: 14px !important;
+        page-break-inside: avoid !important;
+        break-inside: avoid !important;
+      }
+
+      .pillar-card {
+        padding: 16px !important;
+        box-shadow: none !important;
+        border: 1px solid #cbd5e1 !important;
+        page-break-inside: avoid !important;
+        break-inside: avoid !important;
+      }
+
+      .comparison-section {
+        margin-top: 24px !important;
+        box-shadow: none !important;
+        border: 1px solid #cbd5e1 !important;
+        page-break-inside: avoid !important;
+        break-inside: avoid !important;
+      }
+
+      .table-scroll-hint {
+        display: none !important;
       }
 
       table.compare-table {
-        display: block;
-        overflow-x: auto;
+        min-width: 100% !important;
+      }
+
+      table.compare-table th,
+      table.compare-table td {
+        padding: 8px 12px !important;
+        font-size: 8.5pt !important;
       }
 
       .module-item {
-        padding: 24px;
+        padding: 20px 18px !important;
+        margin-bottom: 22px !important;
+        border: 1px solid #cbd5e1 !important;
+        box-shadow: none !important;
+        page-break-inside: avoid !important;
+        break-inside: avoid !important;
+      }
+
+      .module-title {
+        font-size: 1.3rem !important;
+        margin-bottom: 6px !important;
+      }
+
+      .module-desc {
+        font-size: 9pt !important;
+        margin-bottom: 12px !important;
+      }
+
+      .features-list {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 8px !important;
+        margin-bottom: 14px !important;
+      }
+
+      .feature-point {
+        font-size: 8.5pt !important;
+      }
+
+      .screenshot-frame {
+        box-shadow: none !important;
+        border: 1px solid #94a3b8 !important;
+        margin-top: 10px !important;
+        page-break-inside: avoid !important;
+        break-inside: avoid !important;
+      }
+
+      .screenshot-caption {
+        padding: 6px 10px !important;
+        font-size: 7.5pt !important;
+      }
+
+      .cta-banner {
+        padding: 32px 20px !important;
+        border-radius: 16px !important;
+        margin-top: 26px !important;
+        page-break-inside: avoid !important;
+        break-inside: avoid !important;
+      }
+
+      .cta-banner h2 {
+        font-size: 1.7rem !important;
+      }
+
+      .cta-banner p {
+        font-size: 9pt !important;
+        margin-bottom: 16px !important;
+      }
+
+      .cta-button {
+        padding: 10px 24px !important;
+        font-size: 9.5pt !important;
       }
     }
   </style>
@@ -637,60 +1000,63 @@
 
     <!-- COMPARISON TABLE -->
     <div class="comparison-section">
-      <table class="compare-table">
-        <thead>
-          <tr>
-            <th>Platform Feature</th>
-            <th>Excel / WhatsApp</th>
-            <th>Cloud SaaS (RentOk, etc.)</th>
-            <th class="col-highlight">Muruga.net Local ERP</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><strong>Recurring Software Cost</strong></td>
-            <td>Free (Heavy manual labor)</td>
-            <td>₹3,000 – ₹25,000 / month</td>
-            <td class="col-highlight"><strong>₹0 Recurring (One-time ownership)</strong></td>
-          </tr>
-          <tr>
-            <td><strong>Offline Operation</strong></td>
-            <td>Manual files</td>
-            <td>❌ Fails completely without internet</td>
-            <td class="col-highlight"><strong>⚡ 100% Full Functionality Offline</strong></td>
-          </tr>
-          <tr>
-            <td><strong>Financial Security</strong></td>
-            <td>Prone to formula errors</td>
-            <td>Single-entry / Loose edits</td>
-            <td class="col-highlight"><strong>🛡️ Tamper-evident Double-Entry</strong></td>
-          </tr>
-          <tr>
-            <td><strong>Tenant Self-Onboarding</strong></td>
-            <td>Paper forms & xerox IDs</td>
-            <td>Forced app download</td>
-            <td class="col-highlight"><strong>📲 Instant Google Forms + QR Link</strong></td>
-          </tr>
-          <tr>
-            <td><strong>Deposit Embezzlement Safeguard</strong></td>
-            <td>None</td>
-            <td>None</td>
-            <td class="col-highlight"><strong>🔒 Immutable Refund Bills with Locks</strong></td>
-          </tr>
-          <tr>
-            <td><strong>Automated Email Reminders</strong></td>
-            <td>Manual copy-paste</td>
-            <td>Costly third-party SMS</td>
-            <td class="col-highlight"><strong>📧 Multi-Account SMTP Engine</strong></td>
-          </tr>
-          <tr>
-            <td><strong>True Safe Cashflow Metric</strong></td>
-            <td>None (Deposits get spent)</td>
-            <td>Not tracked</td>
-            <td class="col-highlight"><strong>💰 Automatic Deposit Escrow Deduction</strong></td>
-          </tr>
-        </tbody>
-      </table>
+      <div class="table-scroll-hint">👈 Scroll horizontally to compare features 👉</div>
+      <div class="table-responsive">
+        <table class="compare-table">
+          <thead>
+            <tr>
+              <th>Platform Feature</th>
+              <th>Excel / WhatsApp</th>
+              <th>Cloud SaaS (RentOk, etc.)</th>
+              <th class="col-highlight">Muruga.net Local ERP</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Recurring Software Cost</strong></td>
+              <td>Free (Heavy manual labor)</td>
+              <td>₹3,000 – ₹25,000 / month</td>
+              <td class="col-highlight"><strong>₹0 Recurring (One-time ownership)</strong></td>
+            </tr>
+            <tr>
+              <td><strong>Offline Operation</strong></td>
+              <td>Manual files</td>
+              <td>❌ Fails completely without internet</td>
+              <td class="col-highlight"><strong>⚡ 100% Full Functionality Offline</strong></td>
+            </tr>
+            <tr>
+              <td><strong>Financial Security</strong></td>
+              <td>Prone to formula errors</td>
+              <td>Single-entry / Loose edits</td>
+              <td class="col-highlight"><strong>🛡️ Tamper-evident Double-Entry</strong></td>
+            </tr>
+            <tr>
+              <td><strong>Tenant Self-Onboarding</strong></td>
+              <td>Paper forms & xerox IDs</td>
+              <td>Forced app download</td>
+              <td class="col-highlight"><strong>📲 Instant Google Forms + QR Link</strong></td>
+            </tr>
+            <tr>
+              <td><strong>Deposit Embezzlement Safeguard</strong></td>
+              <td>None</td>
+              <td>None</td>
+              <td class="col-highlight"><strong>🔒 Immutable Refund Bills with Locks</strong></td>
+            </tr>
+            <tr>
+              <td><strong>Automated Email Reminders</strong></td>
+              <td>Manual copy-paste</td>
+              <td>Costly third-party SMS</td>
+              <td class="col-highlight"><strong>📧 Multi-Account SMTP Engine</strong></td>
+            </tr>
+            <tr>
+              <td><strong>True Safe Cashflow Metric</strong></td>
+              <td>None (Deposits get spent)</td>
+              <td>Not tracked</td>
+              <td class="col-highlight"><strong>💰 Automatic Deposit Escrow Deduction</strong></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
 
     <!-- MODULES DEEP DIVE -->
